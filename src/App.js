@@ -20,7 +20,7 @@ function App() {
     fetchData()
       .catch(console.error);
   
-  
+  // Updates data every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => fetchData(), 5000);
     return () => clearInterval(interval);
