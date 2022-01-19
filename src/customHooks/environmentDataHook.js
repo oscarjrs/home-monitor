@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-function useEnvironmentData(newEnvironmentData) {
+function useEnvironmentData() {
     
     const [environmentData, setEnvironmentData] = useState([]);
 
-    setEnvironmentData(newEnvironmentData);
-
-    return environmentData;
+    function updateData(newData) {
+        setEnvironmentData(newData);
+    }
+    
+    return [environmentData, updateData];
 }
 
 export default useEnvironmentData;

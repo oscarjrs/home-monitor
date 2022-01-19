@@ -1,25 +1,22 @@
 import './styles/App.css';
 import React, { useEffect, useState } from 'react';
-import { get } from './adapters/dataAdapter.js'
 import useEnvironmentData from './customHooks/environmentDataHook';
 
 function App() {
 
-  //const [temperature, setTemperature] = useState(0)
-  // const [humidity, setHumidity] = useState(0)
-  const [environmentData, setEnvironmentData] = useEnvironmentData([]);
+  const [data, updateData] = useEnvironmentData();
   
   const fetchData = async () => {
       const response = await fetch("http://localhost:3000/data");
       const tempData = await response.json();
-      setEnvironmentData(tempData);
       console.log("Fetched Data...")
-      console.log("Temperature: " + environmentData.temperature);
-      console.log("Humidity: " + environmentData.humidity);
+      // setTemperature(tempData.temperature);
+      // setHumidity(tempData.humidity);
+      updateData(tempData);
+      console.log("Temperature: " + tempData.temperature);
+      console.log("Humidity: " + tempData.humidity);
     }
 
-    fetchData()
-      .catch(console.error);
   
   // Updates data every 5 seconds
   useEffect(() => {
@@ -31,9 +28,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Temperature {environmentData.temperature}
+          Temperature {data.temperature}
           <br />
-          Humidity {environmentData.humidity}
+          Humidity {data.humidity}
           <br />
           
 
