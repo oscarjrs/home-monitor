@@ -6,8 +6,24 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: left;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.data-display {
+  display: inline-block;
+  position: relative;
+  width: 270px;
+  height: 270px;
+  padding: 12px;
+  margin: 12px;
+  background-color: #8581ef;
+  font-size: 32pt;
+  text-align: center;
+}
+
+.data-display-header {
+  font-size: 16pt;
+  padding: 12px;
 }

@@ -19,6 +19,7 @@ function GetData()
         const tempData = await response.json();
         console.log("Fetched Data...")
         updateData(tempData);
+        console.log("id: " + tempData.id);
         console.log("Temperature: " + tempData.temperature);
         console.log("Humidity: " + tempData.humidity);
       }
