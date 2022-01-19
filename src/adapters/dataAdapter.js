@@ -1,22 +1,32 @@
 import React, { useEffect, useState } from 'react';
+import useEnvironmentData from '.././customHooks/environmentDataHook';
+
 
 function GetData()
 {
+    const [data, updateData] = useEnvironmentData();
+
+    console.log("Ready to fetch...");
+
+    // Updates data every 5 seconds
+    useEffect(() => {
+        const interval = setInterval(() => fetchData(), 5000);
+        return () => clearInterval(interval);
+    }, []);
+    
     const fetchData = async () => {
-        console.log("Fetching data...");
         const response = await fetch("http://localhost:3000/data");
-        console.log("Got response!");
         const tempData = await response.json();
-        console.log("Got json data!");
-        setEnvironmentData(tempData);
         console.log("Fetched Data...")
-        console.log("Temperature: " + environmentData.temperature);
-        console.log("Humidity: " + environmentData.humidity);
+        // setTemperature(tempData.temperature);
+        // setHumidity(tempData.humidity);
+        updateData(tempData);
+        console.log("Temperature: " + tempData.temperature);
+        console.log("Humidity: " + tempData.humidity);
       }
-  
 
     
-    return("testreturn")
+    return data
 }
 
 export default GetData;
